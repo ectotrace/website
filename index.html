@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EctoTrace Diagnostics</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        .bg-image-container {
+            /* Set the background image using the file you provided */
+            background-image: url('Hair follicle_Coversub.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Simple fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- Main container with background image -->
+    <main class="bg-image-container h-screen w-screen">
+        <!-- Dark overlay for better text readability -->
+        <div class="h-full w-full bg-black bg-opacity-60 flex flex-col justify-center items-center p-6">
+
+            <!-- Content container -->
+            <div class="text-center text-white max-w-3xl fade-in">
+
+                <!-- Company Title -->
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider">
+                    EctoTrace Diagnostics
+                </h1>
+
+                <!-- Slogan -->
+                <p class="mt-4 text-lg md:text-2xl font-light text-gray-300 tracking-wide">
+                    Exploring a new approach to epigenetic diagnostics in mental health.
+                </p>
+
+                <!-- Divider with pulse animation -->
+                <div class="w-24 h-px bg-blue-400 mx-auto mt-8 mb-8 animate-pulse"></div>
+
+                <!-- In Progress Message -->
+                <p class="text-md md:text-lg text-gray-400">
+                    Our science is in development. Our future headquarters is currently under peer review. Check back post-residency match 2026.
+                </p>
+
+            </div>
+
+            <!-- Footer Note -->
+            <footer class="absolute bottom-4 text-gray-500 text-xs fade-in" style="animation-delay: 0.5s;">
+                &copy; 2025 EctoTrace Diagnostics
+            </footer>
+
+        </div>
+    </main>
+
+</body>
+</html>
