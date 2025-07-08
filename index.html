@@ -112,13 +112,6 @@
 
     <!-- 'Our Goals' Page Content -->
     <div x-show="activePage === 'ourGoals'" x-cloak class="bg-white">
-        <!-- Back to Home Button -->
-        <div class="fixed top-4 left-4 z-50">
-            <button @click="activePage = 'home'" class="bg-slate-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-slate-700 transition-colors">
-                &larr; Back to Home
-            </button>
-        </div>
-
         <div class="slide-deck-container">
             <!-- Slide 1: High Heritability of Schizophrenia -->
             <section class="slide bg-slate-50">
@@ -376,7 +369,7 @@
                 <div class="container mx-auto px-6">
                     <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         <div class="prose lg:prose-lg text-slate-700">
-                            <h2 class="text-3xl font-bold text-slate-800">Addressing Clinical Heterogeneity</h2>
+                            <h2 class="text-3xl font-bold text-slate-800">Application 1: Addressing Clinical Heterogeneity</h2>
                             <p>Beyond cross-tissue analysis, the ChromaStat framework is designed to address schizophrenia's vast clinical heterogeneity. By integrating deep molecular data with rich clinical metadata, our platform moves beyond treating patients as a single group. We employ unsupervised machine learning to discover patient subgroups based on shared molecular signatures, and our Bayesian engine can directly model covariates like medication response and age of onset. The ultimate objective is to identify robust biomarkers for patient stratification, paving the way for a personalized medicine approach to guide treatment.</p>
                         </div>
                         <div class="w-full">
@@ -539,6 +532,15 @@
                 </div>
             </section>
 
+            <!-- Final Section with Back Button -->
+            <section class="slide bg-slate-800">
+                <div class="text-center">
+                    <button @click="activePage = 'home'" class="bg-white text-slate-800 px-8 py-3 rounded-lg shadow-lg hover:bg-slate-200 transition-colors font-semibold text-lg">
+                        Return to Home
+                    </button>
+                </div>
+            </section>
+
         </div>
     </div>
 
@@ -560,7 +562,10 @@
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95">
             <p class="text-center text-slate-600">
-                Thanks for your interest. This is an active project I’m hoping to continue in an academic setting or through Ectotrace Diagnostics. It’s still in development and not yet published. By entering the applicant’s last name, you agree to keep this information confidential and not to copy, share, or use it outside the residency interview process.
+                This is an active, unpublished research project. The contents are confidential and for residency interview purposes only.
+            </p>
+            <p class="text-center text-slate-800 font-semibold mt-4">
+                By entering the applicant’s last name, you agree to these terms:
             </p>
             <form @submit.prevent="
                 if (password.toLowerCase() === 'chen') {
