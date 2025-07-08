@@ -5,24 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EctoTrace Diagnostics</title>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMTE0RD9M8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-PMTE0RD9M8');
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Alpine JS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <!-- Google Fonts: Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* Custom styles */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevents scrollbars */
+            font-family: 'Manrope', sans-serif;
         }
 
         .bg-image-container {
             /* Set the background image using the file you provided */
-            background-image: url('Hair follicle_Coversub.jpg');
+            background-image: url('https://storage.googleapis.com/gemini-prod-us-west1-4099-public-files/f9b8982c-df60-486c-8e39-a17d32210580');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -37,12 +49,33 @@
         .fade-in {
             animation: fadeIn 1.5s ease-out forwards;
         }
+
+        [x-cloak] {
+            display: none !important;
+        }
+        
+        /* Styles for the scrollable slide deck */
+        .slide-deck-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+        .slide {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0; /* Prevents slides from shrinking */
+        }
     </style>
 </head>
-<body class="bg-black">
+<body class="bg-black" x-data="{ activePage: 'home', showPasswordModal: false, password: '', error: '' }">
 
-    <!-- Main container with background image -->
-    <main class="bg-image-container h-screen w-screen">
+    <!-- Home Page Section -->
+    <main x-show="activePage === 'home'" class="bg-image-container h-screen w-screen">
         <!-- Dark overlay for better text readability -->
         <div class="h-full w-full bg-black bg-opacity-60 flex flex-col justify-center items-center p-6">
 
@@ -55,17 +88,17 @@
                 </h1>
 
                 <!-- Slogan -->
-                <p class="mt-4 text-lg md:text-2xl font-light text-gray-300 tracking-wide">
+                <p class="mt-4 text-lg md:text-xl font-light text-gray-300 tracking-wide">
                     Exploring a new approach to epigenetic diagnostics in mental health.
                 </p>
 
                 <!-- Divider with pulse animation -->
                 <div class="w-24 h-px bg-blue-400 mx-auto mt-8 mb-8 animate-pulse"></div>
 
-                <!-- In Progress Message -->
-                <p class="text-md md:text-lg text-gray-400">
-                    Our science is in development. Our future headquarters is currently under peer review. Check back post-residency match 2026.
-                </p>
+                <!-- Link to Our Goals -->
+                <button @click="showPasswordModal = true" class="text-md md:text-lg text-blue-300 hover:text-white border border-blue-400 hover:bg-blue-400 hover:bg-opacity-20 rounded-full px-6 py-2 transition-all duration-300">
+                    Our Goals
+                </button>
 
             </div>
 
@@ -77,5 +110,483 @@
         </div>
     </main>
 
+    <!-- 'Our Goals' Page Content -->
+    <div x-show="activePage === 'ourGoals'" x-cloak class="bg-white">
+        <!-- Back to Home Button -->
+        <div class="fixed top-4 left-4 z-50">
+            <button @click="activePage = 'home'" class="bg-slate-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-slate-700 transition-colors">
+                &larr; Back to Home
+            </button>
+        </div>
+
+        <div class="slide-deck-container">
+            <!-- Slide 1: High Heritability of Schizophrenia -->
+            <section class="slide bg-slate-50">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">High Heritability of Schizophrenia</h2>
+                             <p>Schizophrenia is a severe psychiatric illness with a significant genetic component. Family¹,², twin, and adoption studies consistently find high heritability, with twin studies providing estimates approaching 80%³. This places schizophrenia among the most heritable complex brain disorders and underscores the importance of genetic factors in its etiology⁴.</p>
+                             <p>However, since even identical twins are not 100% concordant, non-genetic factors must also play a role. This suggests that environmental exposures likely modify an underlying genetic predisposition, a process often mediated by epigenetics.</p>
+                        </div>
+                        <div class="w-full bg-white p-6 rounded-lg shadow-xl">
+                            <svg viewBox="0 0 800 450" width="100%" height="100%" aria-labelledby="chartTitle-p1">
+                                <title id="chartTitle-p1">Bar chart showing the prevalence of schizophrenia based on risk factors.</title>
+                                <style>
+                                    .chart-title-p1 { font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 700; fill: #1e293b; }
+                                    .label-text-p1 { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 600; fill: #475569; }
+                                    .percent-text-p1 { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; }
+                                    .axis-line-p1 { stroke: #e2e8f0; stroke-width: 2; }
+                                </style>
+                                <text x="50" y="40" class="chart-title-p1">Schizophrenia Prevalence by Risk Factor</text>
+                                <g id="chart-area-p1" transform="translate(0, 60)">
+                                    <line x1="240" y1="20" x2="240" y2="380" class="axis-line-p1" />
+                                </g>
+                                <script>
+                                    const chartAreaP1 = document.getElementById('chart-area-p1');
+                                    if (chartAreaP1) {
+                                        const dataP1 = [ { label: "General Population", value: 0.5, color: "#bae6fd" }, { label: "Childhood Adversities", value: 4, color: "#7dd3fc" }, { label: "One Parent with SCZ", value: 15, color: "#38bdf8" }, { label: "Both Parents with SCZ", value: 46, color: "#0ea5e9" }, { label: "Identical Twin with SCZ", value: 81, color: "#0284c7" } ];
+                                        const barStartY_p1 = 40; const barHeight_p1 = 40; const barGap_p1 = 30; const chartStartX_p1 = 250; const maxBarWidth_p1 = 500; const maxDataValue_p1 = 100;
+                                        dataP1.forEach((d, i) => { const yPos = barStartY_p1 + i * (barHeight_p1 + barGap_p1); const barWidth = (d.value / maxDataValue_p1) * maxBarWidth_p1; const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); const label = document.createElementNS('http://www.w3.org/2000/svg', 'text'); label.setAttribute('x', 230); label.setAttribute('y', yPos + barHeight_p1 / 2); label.setAttribute('text-anchor', 'end'); label.setAttribute('dominant-baseline', 'middle'); label.setAttribute('class', 'label-text-p1'); label.textContent = d.label; g.appendChild(label); const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect'); rect.setAttribute('x', chartStartX_p1); rect.setAttribute('y', yPos); rect.setAttribute('width', barWidth); rect.setAttribute('height', barHeight_p1); rect.setAttribute('fill', d.color); rect.setAttribute('rx', 4); g.appendChild(rect); const percent = document.createElementNS('http://www.w3.org/2000/svg', 'text'); const labelOffset = 10; const labelX = barWidth > 50 ? chartStartX_p1 + barWidth - labelOffset : chartStartX_p1 + barWidth + labelOffset; const textColor = barWidth > 50 ? 'white' : '#1e293b'; const textAnchor = barWidth > 50 ? 'end' : 'start'; percent.setAttribute('x', labelX); percent.setAttribute('y', yPos + barHeight_p1 / 2); percent.setAttribute('text-anchor', textAnchor); percent.setAttribute('dominant-baseline', 'middle'); percent.setAttribute('class', 'percent-text-p1'); percent.setAttribute('fill', textColor); percent.textContent = `${d.value}%`; g.appendChild(percent); chartAreaP1.appendChild(g); });
+                                    }
+                                </script>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 2: Polygenic Model -->
+            <section class="slide bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">A Complex, Polygenic Architecture</h2>
+                            <p>Despite its high heritability, schizophrenia does not follow a simple Mendelian inheritance model. Instead, its inheritance pattern is consistent with a multifactorial etiology.</p>
+                            <p>Large-scale genome-wide association studies (GWAS) have established that its genetic architecture is highly polygenic, with risk conferred by the cumulative effect of thousands of common variants, each with a small effect size, primarily affecting neurodevelopmental and synaptic processes⁵.</p>
+                        </div>
+                        <div class="w-full">
+                           <figure>
+                               <img src="https://storage.googleapis.com/gemini-prod-us-west1-4099-public-files/5b9866f4-4918-47bd-8079-c5bf5c7b6f12" alt="Genetic architecture of complex traits, showing schizophrenia variants." class="rounded-lg shadow-xl w-full h-auto">
+                               <figcaption class="text-right text-xs text-slate-500 mt-2">Adapted from McCarthy et al. 2008⁶</figcaption>
+                           </figure>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+            
+            <!-- Slide 3: Epigenetic Changes in Brain -->
+            <section class="slide bg-slate-50">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">A Disease Signature in the Brain's Epigenome</h2>
+                            <p>Recent analyses of post-mortem brain tissue indicate that schizophrenia is associated with a specific, reproducible epigenetic signature⁷⁻¹⁰. Widespread changes in DNA methylation have been identified in key neural pathways, providing a quantifiable biological signal of the disease state.</p>
+                            <p>This molecular fingerprint, consistently found across multiple cohorts, suggests that while genetic risk is complex, its manifestation in the brain's epigenome may be a more focused and detectable target. The critical challenge is how to access this signal in living individuals.</p>
+                        </div>
+                        <div class="w-full">
+                           <figure>
+                               <img src="https://storage.googleapis.com/gemini-prod-us-west1-4099-public-files/0819c9d0-1e85-474c-a83c-e09b37bd02af" alt="Manhattan plot showing differential DNA methylation across the human genome in schizophrenia cases vs. controls." class="rounded-lg shadow-xl w-full h-auto">
+                               <figcaption class="text-right text-xs text-slate-500 mt-2">Differential DNA methylation in SCZ cases vs. controls. Adapted from Hannon et al. 2021⁸</figcaption>
+                           </figure>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 4: A Historical Precedent -->
+            <section class="slide bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">A Historical Precedent & A Modern Approach</h2>
+                            <p>The idea of using skin as a proxy for brain development is not new. For decades, researchers noted subtle differences in the dermatoglyphics (fingerprints) of individuals with schizophrenia, viewing them as a physical trace of early neurodevelopmental events that occur in the same embryonic window¹¹,¹².</p>
+                            <p>While this was a pioneering concept, we can now move beyond morphology. With modern molecular tools at single-cell resolution, we aim to detect the epigenetic residue of these same early events, transitioning from a physical trace to a precise molecular signal.</p>
+                        </div>
+                        <div class="w-full">
+                            <figure>
+                                <img src="https://storage.googleapis.com/gemini-prod-us-west1-4099-public-files/82c1afc6-9dd1-4552-87e3-b8e87993e03a" alt="Comparison of fingerprints showing dissociation in a whorl pattern, as studied in schizophrenia research." class="rounded-lg shadow-xl w-full h-auto">
+                                <figcaption class="text-right text-xs text-slate-500 mt-2">Adapted from Raphael & Raphael 1962¹¹</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 5: Rationale and Feasibility -->
+            <section class="slide bg-slate-50">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">Rationale and Feasibility of the Ectodermal Approach</h2>
+                            <p>Our hypothesis is that early developmental insults contributing to schizophrenia risk may leave durable epigenetic marks in both skin and brain. To test the feasibility of detecting these marks, we analyzed public data from the NIH Roadmap Epigenomics Project.</p>
+                            <p>Our preliminary results indicate that key regulatory elements associated with developmental gene regulation exhibit greater conservation between brain and skin than between brain and blood, providing a strong empirical basis for our approach.</p>
+                        </div>
+                        <div class="w-full">
+                           <figure>
+                               <img src="https://storage.googleapis.com/gemini-prod-us-west1-4099-public-files/4fe8d2d3-0ad6-4c8d-87b2-64da30742503" alt="Heatmap showing conservation of ChromHMM states across different tissues." class="rounded-lg shadow-xl w-full h-auto">
+                               <figcaption class="text-right text-xs text-slate-500 mt-2">Heatmap showing greater conservation of developmental regulatory elements (e.g., TssA, TssBiv) between brain and skin tissues compared to blood.</figcaption>
+                           </figure>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 6: Current Tools are Lacking -->
+            <section class="slide bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">Current Tools Are Insufficient</h2>
+                            <p>Most bioinformatics tools, like edgeR and DESeq2, analyze each genomic region independently. This "one-peak-at-a-time" approach ignores that regulatory elements work in coordinated networks.</p>
+                            <p>They also inherit statistical assumptions from RNA-seq that are often false for epigenetics, potentially causing real biological signals to be misinterpreted as technical noise. Finally, they fail to integrate prior biological knowledge (e.g., conservation, 3D structure) into the core analysis.</p>
+                            <blockquote>
+                                We need tools built specifically for chromatin data that model regulation as it actually works: in context and as a network.
+                            </blockquote>
+                        </div>
+                        <div class="w-full">
+                           <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                                <!-- Standard Analysis -->
+                                <g>
+                                    <text x="100" y="30" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#475569">Standard Analysis</text>
+                                    <rect x="50" y="70" width="100" height="40" rx="5" fill="#e2e8f0"/>
+                                    <text x="100" y="95" font-family="Manrope, sans-serif" text-anchor="middle" fill="#475569">Peak 1</text>
+                                    <rect x="50" y="130" width="100" height="40" rx="5" fill="#e2e8f0"/>
+                                    <text x="100" y="155" font-family="Manrope, sans-serif" text-anchor="middle" fill="#475569">Peak 2</text>
+                                    <rect x="50" y="190" width="100" height="40" rx="5" fill="#e2e8f0"/>
+                                    <text x="100" y="215" font-family="Manrope, sans-serif" text-anchor="middle" fill="#475569">Peak 3</text>
+                                </g>
+                                <!-- Arrow -->
+                                <path d="M170 150 L 230 150" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 5"/>
+                                <path d="M225 145 L 230 150 L 225 155" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                                <!-- EctoTrace Analysis -->
+                                <g>
+                                    <text x="300" y="30" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#1d4ed8">Our Proposed Model</text>
+                                    <g id="chromastat-network">
+                                        <rect x="250" y="60" width="100" height="50" rx="5" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+                                        <text x="300" y="80" font-family="Manrope, sans-serif" text-anchor="middle" fill="#1e3a8a" font-weight="500">Enhancer</text>
+                                        <text x="300" y="95" font-family="Manrope, sans-serif" text-anchor="middle" fill="#1e3a8a" font-size="10">(High Weight)</text>
+
+                                        <rect x="250" y="180" width="100" height="40" rx="5" fill="#e0e7ff"/>
+                                        <text x="300" y="205" font-family="Manrope, sans-serif" text-anchor="middle" fill="#4338ca">Promoter</text>
+
+                                        <rect x="260" y="125" width="80" height="30" rx="5" fill="#f1f5f9"/>
+                                        <text x="300" y="145" font-family="Manrope, sans-serif" text-anchor="middle" fill="#64748b">Intergenic</text>
+
+                                        <path d="M300 110 L 300 125" stroke="#9ca3af" stroke-width="1.5"/>
+                                        <path d="M300 155 L 300 180" stroke="#9ca3af" stroke-width="1.5"/>
+                                    </g>
+                                    <text x="300" y="265" font-family="Manrope, sans-serif" font-size="12" text-anchor="middle" fill="#166534" font-weight="600">Network-based Result</text>
+                                </g>
+                           </svg>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 7: Our Approach: ChromaStat -->
+            <section class="slide bg-slate-800 text-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose prose-invert lg:prose-lg">
+                            <h2 class="text-3xl font-bold text-white">Our Solution: The ChromaStat Framework</h2>
+                            <p>To overcome this challenge, we are developing ChromaStat, a computational framework designed to identify conserved epigenetic signals across different tissues. By integrating massive public reference epigenomes with a novel weighted Bayesian model, ChromaStat can:</p>
+                            <ul class="list-disc list-inside text-lg">
+                                <li class="pl-2">Model tissue-specific variation to filter out cellular "noise."</li>
+                                <li class="pl-2">Identify conserved regulatory elements active in both skin and brain.</li>
+                                <li class="pl-2">Amplify the shared disease signal that would otherwise be obscured.</li>
+                            </ul>
+                            <p>This framework is designed to bridge the critical analytical gap, enabling the use of skin as an accessible proxy to detect brain-relevant molecular markers.</p>
+                        </div>
+                        <div class="w-full">
+                           <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                                <!-- Inputs -->
+                                <g>
+                                    <text x="60" y="30" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#94a8b8">Inputs</text>
+                                    <rect x="10" y="50" width="100" height="50" rx="5" fill="#334155" />
+                                    <text x="60" y="70" font-family="Manrope, sans-serif" text-anchor="middle" fill="white" font-size="12">Epigenetic Data</text>
+                                    <text x="60" y="85" font-family="Manrope, sans-serif" text-anchor="middle" fill="#cbd5e1" font-size="10">(ATAC-seq)</text>
+                                    
+                                    <rect x="10" y="120" width="100" height="50" rx="5" fill="#334155" />
+                                    <text x="60" y="140" font-family="Manrope, sans-serif" text-anchor="middle" fill="white" font-size="12">Clinical Metadata</text>
+                                    <text x="60" y="155" font-family="Manrope, sans-serif" text-anchor="middle" fill="#cbd5e1" font-size="10">(Sex, Age, Rx)</text>
+
+                                    <rect x="10" y="190" width="100" height="50" rx="5" fill="#334155" />
+                                    <text x="60" y="210" font-family="Manrope, sans-serif" text-anchor="middle" fill="white" font-size="12">Biological Priors</text>
+                                    <text x="60" y="225" font-family="Manrope, sans-serif" text-anchor="middle" fill="#cbd5e1" font-size="10">(Enhancers, etc.)</text>
+                                </g>
+                                <!-- Arrows -->
+                                <path d="M120 75 L 160 140" stroke="#475569" stroke-width="2" />
+                                <path d="M120 145 L 160 150" stroke="#475569" stroke-width="2" />
+                                <path d="M120 215 L 160 160" stroke="#475569" stroke-width="2" />
+
+                                <!-- ChromaStat Engine -->
+                                <g>
+                                    <rect x="170" y="110" width="120" height="80" rx="10" fill="#1e40af"/>
+                                    <text x="230" y="145" font-family="Manrope, sans-serif" text-anchor="middle" fill="white" font-size="16" font-weight="800">ChromaStat</text>
+                                    <text x="230" y="165" font-family="Manrope, sans-serif" text-anchor="middle" fill="#93c5fd" font-size="10">ML Engine</text>
+                                </g>
+                                
+                                <!-- Output Arrow -->
+                                <path d="M300 150 L 340 150" stroke="#818cf8" stroke-width="3"/>
+                                <path d="M335 145 L 340 150 L 335 155" fill="none" stroke="#818cf8" stroke-width="3"/>
+
+                                <!-- Output -->
+                                <g>
+                                    <text x="370" y="100" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#94a8b8">Outputs</text>
+                                    <circle cx="370" cy="150" r="20" fill="#a78bfa"/>
+                                    <text x="370" y="190" font-family="Manrope, sans-serif" text-anchor="middle" fill="#5b21b6" font-size="12">Stratified</text>
+                                    <text x="370" y="205" font-family="Manrope, sans-serif" text-anchor="middle" fill="#5b21b6" font-size="12">Biomarkers</text>
+                                </g>
+                           </svg>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+            
+            <!-- Slide 8: Applications -->
+            <section class="slide bg-slate-50">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">Addressing Clinical Heterogeneity</h2>
+                            <p>Beyond cross-tissue analysis, the ChromaStat framework is designed to address schizophrenia's vast clinical heterogeneity. By integrating deep molecular data with rich clinical metadata, our platform moves beyond treating patients as a single group. We employ unsupervised machine learning to discover patient subgroups based on shared molecular signatures, and our Bayesian engine can directly model covariates like medication response and age of onset. The ultimate objective is to identify robust biomarkers for patient stratification, paving the way for a personalized medicine approach to guide treatment.</p>
+                        </div>
+                        <div class="w-full">
+                           <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                                <!-- Standard Analysis -->
+                                <g>
+                                    <text x="100" y="30" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#475569">Standard Analysis</text>
+                                    <g id="patient-group-1">
+                                        <circle cx="70" cy="80" r="5" fill="#f87171"/> <circle cx="85" cy="75" r="5" fill="#60a5fa"/> <circle cx="100" cy="80" r="5" fill="#f87171"/> <circle cx="115" cy="75" r="5" fill="#60a5fa"/> <circle cx="75" cy="95" r="5" fill="#fb923c"/> <circle cx="90" cy="100" r="5" fill="#a78bfa"/> <circle cx="105" cy="95" r="5" fill="#fb923c"/> <circle cx="120" cy="100" r="5" fill="#a78bfa"/> <circle cx="80" cy="115" r="5" fill="#f87171"/> <circle cx="95" cy="110" r="5" fill="#60a5fa"/> <circle cx="110" cy="115" r="5" fill="#fb923c"/> <circle cx="125" cy="110" r="5" fill="#a78bfa"/>
+                                    </g>
+                                    <path d="M100 130 L 100 180" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 5"/>
+                                    <path d="M95 175 L 100 180 L 105 175" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                                    <text x="100" y="205" font-family="Manrope, sans-serif" text-anchor="middle" fill="#475569" font-weight="500">Averaged Signal</text>
+                                </g>
+
+                                <!-- ChromaStat Analysis -->
+                                <g>
+                                    <text x="300" y="30" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#1d4ed8">ChromaStat Stratification</text>
+                                    <g id="patient-group-2">
+                                        <circle cx="270" cy="80" r="5" fill="#f87171"/> <circle cx="285" cy="75" r="5" fill="#60a5fa"/> <circle cx="300" cy="80" r="5" fill="#f87171"/> <circle cx="315" cy="75" r="5" fill="#60a5fa"/> <circle cx="275" cy="95" r="5" fill="#fb923c"/> <circle cx="290" cy="100" r="5" fill="#a78bfa"/> <circle cx="305" cy="95" r="5" fill="#fb923c"/> <circle cx="320" cy="100" r="5" fill="#a78bfa"/> <circle cx="280" cy="115" r="5" fill="#f87171"/> <circle cx="295" cy="110" r="5" fill="#60a5fa"/> <circle cx="310" cy="115" r="5" fill="#fb923c"/> <circle cx="325" cy="110" r="5" fill="#a78bfa"/>
+                                    </g>
+                                    <!-- Stratification lines -->
+                                    <path d="M270 80 L 240 180" stroke="#fca5a5" stroke-width="1.5" fill="none"/>
+                                    <path d="M300 80 L 240 180" stroke="#fca5a5" stroke-width="1.5" fill="none"/>
+                                    <path d="M280 115 L 240 180" stroke="#fca5a5" stroke-width="1.5" fill="none"/>
+                                    
+                                    <path d="M285 75 L 300 180" stroke="#a5b4fc" stroke-width="1.5" fill="none"/>
+                                    <path d="M315 75 L 300 180" stroke="#a5b4fc" stroke-width="1.5" fill="none"/>
+                                    <path d="M295 110 L 300 180" stroke="#a5b4fc" stroke-width="1.5" fill="none"/>
+
+                                    <path d="M275 95 L 360 180" stroke="#fdba74" stroke-width="1.5" fill="none"/>
+                                    <path d="M305 95 L 360 180" stroke="#fdba74" stroke-width="1.5" fill="none"/>
+                                    <path d="M310 115 L 360 180" stroke="#fdba74" stroke-width="1.5" fill="none"/>
+
+                                    <!-- Stratified Biomarkers -->
+                                    <g>
+                                        <text x="240" y="205" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#b91c1c">Cluster 1</text>
+                                        <circle cx="240" cy="225" r="8" fill="#f87171"/>
+                                    </g>
+                                     <g>
+                                        <text x="300" y="205" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#1d4ed8">Cluster 2</text>
+                                        <circle cx="300" cy="225" r="8" fill="#60a5fa"/>
+                                    </g>
+                                     <g>
+                                        <text x="360" y="205" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#c2410c">Cluster 3</text>
+                                        <circle cx="360" cy="225" r="8" fill="#fb923c"/>
+                                    </g>
+                                    <text x="300" y="260" font-family="Manrope, sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#1d4ed8">Unbiased Subgroup Discovery</text>
+                                </g>
+                           </svg>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+            
+            <!-- Slide 9: In Situ Model -->
+            <section class="slide bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose lg:prose-lg text-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800">A Dynamic Window into Neurodevelopment</h2>
+                            <p>Our vision extends to using this system as a dynamic window into the disease's origins. We can leverage the continuous differentiation of melanocyte stem cells within patient skin as an in situ model of development.</p>
+                            <p>This offers a powerful alternative to in vitro models like iPSCs, which require an artificial process of epigenetic resetting. By studying cells in their native environment, we can directly observe how a patient’s inherent epigenetic landscape affects cell fate, providing unprecedented insight into the functional consequences of schizophrenia's developmental origins.</p>
+                        </div>
+                        <div class="w-full">
+                           <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                                <g>
+                                    <text x="200" y="20" font-family="Manrope, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#475569">Modeling Developmental Trajectories</text>
+                                    
+                                    <!-- Stem Cell -->
+                                    <circle cx="200" cy="50" r="15" fill="#e0e7ff"/>
+                                    <text x="200" y="55" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#4338ca">Stem Cell</text>
+                                    
+                                    <!-- Differentiation to Germ Layers -->
+                                    <path d="M200 65 L 100 100" stroke="#9ca3af" stroke-width="1.5"/>
+                                    <path d="M200 65 L 200 100" stroke="#9ca3af" stroke-width="1.5"/>
+                                    <path d="M200 65 L 300 100" stroke="#9ca3af" stroke-width="1.5"/>
+
+                                    <!-- Germ Layers -->
+                                    <text x="100" y="115" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#7f1d1d">Mesoderm Progenitor</text>
+                                    <text x="200" y="115" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#059669">Endoderm Progenitor</text>
+                                    <text x="300" y="115" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#1d4ed8">Ectoderm Progenitor</text>
+
+                                    <!-- Fork from Ectoderm -->
+                                    <path d="M300 125 L 250 160" stroke="#60a5fa" stroke-width="1.5"/>
+                                    <path d="M300 125 L 350 160" stroke="#60a5fa" stroke-width="1.5"/>
+
+                                    <!-- Neuron and Skin Stem Cells -->
+                                    <circle cx="250" cy="170" r="15" fill="#dbeafe"/>
+                                    <text x="250" y="175" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#1e3a8a">Neuron Stem Cell</text>
+                                    
+                                    <circle cx="350" cy="170" r="15" fill="#d1fae5"/>
+                                    <text x="350" y="175" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#065f46">Skin Stem Cell</text>
+
+                                    <!-- Lightning Insult -->
+                                    <g stroke="#f59e0b" stroke-width="1.5" fill="none">
+                                        <path d="M270 190 l-5 8 l 10 -3 l -5 8"/>
+                                        <path d="M330 190 l-5 8 l 10 -3 l -5 8"/>
+                                    </g>
+                                    <text x="300" y="205" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#b45309">Developmental Insult</text>
+
+                                    <!-- Final Differentiation -->
+                                    <path d="M250 185 L 250 220" stroke="#9ca3af" stroke-width="1.5"/>
+                                    <path d="M350 185 L 350 220" stroke="#9ca3af" stroke-width="1.5"/>
+
+                                    <!-- Final Cell Types -->
+                                    <circle cx="250" cy="240" r="15" fill="#ef4444"/>
+                                    <text x="250" y="270" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#991b1b">Pathological Neuron</text>
+
+                                    <circle cx="350" cy="240" r="15" fill="#6ee7b7" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2 2"/>
+                                    <text x="350" y="265" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#065f46">"Silent Carrier"</text>
+                                    <text x="350" y="278" font-family="Manrope, sans-serif" font-size="10" text-anchor="middle" fill="#065f46">Skin Cell</text>
+                                </g>
+                           </svg>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </section>
+
+            <!-- Slide 10: Conclusion and Future Directions -->
+            <section class="slide bg-slate-800 text-white">
+                 <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div class="prose prose-invert lg:prose-lg">
+                            <h2 class="text-3xl font-bold text-white">Our Goals and Future Directions</h2>
+                            <p>Our immediate objective is to finalize the ChromaStat computational framework, building upon promising preliminary findings in preparation for biological validation. We have prepared an IRB protocol and external grant applications to support this next phase.</p>
+                            <p>The crucial next step is to apply this platform to analyze single-cell open chromatin data from patient skin biopsies. This experiment will directly test our central hypothesis that brain-relevant epigenetic signatures can be robustly detected in an accessible peripheral tissue.</p>
+                             <blockquote>
+                                We aim to carry this work forward within a supportive residency program that has the infrastructure to help bridge the gap between computational discovery and clinical application.
+                            </blockquote>
+                        </div>
+                        <div class="w-full">
+                            <div class="prose prose-sm prose-invert text-slate-400">
+                                <h3 class="text-lg font-semibold text-slate-300">References</h3>
+                                <ol class="list-decimal list-inside space-y-2 text-xs">
+                                    <li>Rasic D, et al. Schizophrenia Bulletin. 2014.</li>
+                                    <li>Wu EQ, et al. Psychological Medicine. 2006.</li>
+                                    <li>Sullivan PF, et al. Archives of General Psychiatry. 2003.</li>
+                                    <li>Trotta A, et al. Psychological Medicine. 2015.</li>
+                                    <li>Sullivan PF, et al. Nat Rev Genet. 2012.</li>
+                                    <li>McCarthy MI, et al. Nat Rev Genet. 2008.</li>
+                                    <li>Chen J, et al. JAMA Psychiatry. 2020.</li>
+                                    <li>Hannon E, et al. eLife. 2021.</li>
+                                    <li>Wockner LF, et al. Transl Psychiatry. 2014.</li>
+                                    <li>Girdhar K, et al. Nat Neurosci. 2022.</li>
+                                    <li>Raphael T, Raphael LG. JAMA. 1962.</li>
+                                    <li>Salvador R, et al. Schizophrenia Bulletin. 2023.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div x-show="showPasswordModal" x-cloak 
+         class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+         x-transition:enter="ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+        <div @click.away="showPasswordModal = false" 
+             class="bg-white rounded-lg p-8 shadow-2xl w-full max-w-md mx-4"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95">
+            <p class="text-center text-slate-600">
+                Thanks for your interest. This is an active project I’m hoping to continue in an academic setting or through Ectotrace Diagnostics. It’s still in development and not yet published. By entering the applicant’s last name, you agree to keep this information confidential and not to copy, share, or use it outside the residency interview process.
+            </p>
+            <form @submit.prevent="
+                if (password.toLowerCase() === 'chen') {
+                    activePage = 'ourGoals';
+                    showPasswordModal = false;
+                    password = '';
+                    error = '';
+                } else {
+                    error = 'Incorrect password. Please try again.';
+                    password = '';
+                }
+            ">
+                <div class="mt-6">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" name="password" id="password" x-model="password"
+                           class="block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                           placeholder="Applicant's Last Name">
+                </div>
+                <p x-show="error" x-text="error" class="text-red-600 text-sm mt-2"></p>
+                <div class="mt-6">
+                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Agree & Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
