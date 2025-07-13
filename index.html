@@ -164,7 +164,7 @@
                         <div class="w-full">
                            <figure>
                                <img src="https://github.com/ectotrace/website/blob/main/s2.png?raw=true" alt="Genetic architecture of complex traits, showing schizophrenia variants." class="rounded-lg shadow-xl w-full h-auto">
-                               <figcaption class="text-right text-xs text-slate-500 mt-2">Adapted from McCarthy et al. 2008⁶</figcaption>
+                               <figcaption class="text-right text-xs text-slate-500 mt-2">Genetic risk for schizophrenia is composed of rare, high-penetrance variants (left) and common, low-effect variants (right). Adapted from McCarthy et al. 2008⁶</figcaption>
                            </figure>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                         <div class="w-full">
                            <figure>
                                <img src="https://github.com/ectotrace/website/blob/main/s3.jpg?raw=true" alt="Manhattan plot showing differential DNA methylation across the human genome in schizophrenia cases vs. controls." class="rounded-lg shadow-xl w-full h-auto">
-                               <figcaption class="text-right text-xs text-slate-500 mt-2">Differential DNA methylation in SCZ cases vs. controls. Adapted from Hannon et al. 2021⁸</figcaption>
+                               <figcaption class="text-right text-xs text-slate-500 mt-2">Differential DNA methylation in SCZ cases vs. controls across the genome. Adapted from Hannon et al. 2021⁸</figcaption>
                            </figure>
                         </div>
                     </div>
@@ -307,7 +307,7 @@
                         <div class="prose prose-invert lg:prose-lg">
                             <h2 class="text-3xl font-bold text-white">Our Solution: The ChromaStat Framework</h2>
                             <p>To overcome this challenge, we are developing ChromaStat, a computational framework designed to identify conserved epigenetic signals across different tissues. By integrating massive public reference epigenomes with a novel weighted Bayesian model, ChromaStat can:</p>
-                            <ul class="list-disc list-inside text-lg">
+                            <ul class="list-disc list-inside">
                                 <li class="pl-2">Model tissue-specific variation to filter out cellular "noise."</li>
                                 <li class="pl-2">Identify conserved regulatory elements active in both skin and brain.</li>
                                 <li class="pl-2">Amplify the shared disease signal that would otherwise be obscured.</li>
@@ -369,7 +369,7 @@
                 <div class="container mx-auto px-6">
                     <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         <div class="prose lg:prose-lg text-slate-700">
-                            <h2 class="text-3xl font-bold text-slate-800">Application 1: Addressing Clinical Heterogeneity</h2>
+                            <h2 class="text-3xl font-bold text-slate-800">Addressing Clinical Heterogeneity</h2>
                             <p>Beyond cross-tissue analysis, the ChromaStat framework is designed to address schizophrenia's vast clinical heterogeneity. By integrating deep molecular data with rich clinical metadata, our platform moves beyond treating patients as a single group. We employ unsupervised machine learning to discover patient subgroups based on shared molecular signatures, and our Bayesian engine can directly model covariates like medication response and age of onset. The ultimate objective is to identify robust biomarkers for patient stratification, paving the way for a personalized medicine approach to guide treatment.</p>
                         </div>
                         <div class="w-full">
@@ -503,11 +503,8 @@
                     <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         <div class="prose prose-invert lg:prose-lg">
                             <h2 class="text-3xl font-bold text-white">Our Goals and Future Directions</h2>
-                            <p>Our immediate objective is to finalize the ChromaStat computational framework, building upon promising preliminary findings in preparation for biological validation. We have prepared an IRB protocol and external grant applications to support this next phase.</p>
-                            <p>The crucial next step is to apply this platform to analyze single-cell open chromatin data from patient skin biopsies. This experiment will directly test our central hypothesis that brain-relevant epigenetic signatures can be robustly detected in an accessible peripheral tissue.</p>
-                             <blockquote>
-                                We aim to carry this work forward within a supportive residency program that has the infrastructure to help bridge the gap between computational discovery and clinical application.
-                            </blockquote>
+                            <p>We are in the final stages of developing the ChromaStat computational framework, with a target completion date in mid-2026. The next step will be to validate the model using single-cell open chromatin data from skin biopsies, testing our central hypothesis that brain-relevant epigenetic patterns can be detected in accessible peripheral tissues.</p>
+                            <p>An IRB protocol has already been drafted and is ready for submission at the start of PGY-1. While this project could form the basis of a K award in a research-focused residency, it is designed to remain adaptable. All wet-lab experiments can be carried out in collaboration with established partners at our affiliated institution, allowing for full clinical engagement during residency. In such scenario, we have also prepared an SBIR application to support this work.</p>
                         </div>
                         <div class="w-full">
                             <div class="prose prose-sm prose-invert text-slate-400">
@@ -565,7 +562,7 @@
                 This is an active, unpublished research project. The contents are confidential and for residency interview purposes only.
             </p>
             <p class="text-center text-slate-800 font-semibold mt-4">
-                By entering the applicant’s last name, you agree to these terms:
+                To continue, please enter the last name of the <u class="font-bold">residency applicant</u> that this website is associated with:
             </p>
             <form @submit.prevent="
                 if (password.toLowerCase() === 'chen') {
@@ -582,7 +579,7 @@
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" name="password" id="password" x-model="password"
                            class="block w-full rounded-md border-0 py-2.5 px-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                           placeholder="Applicant's Last Name">
+                           placeholder="Enter applicant's last name here">
                 </div>
                 <p x-show="error" x-text="error" class="text-red-600 text-sm mt-2"></p>
                 <div class="mt-6">
